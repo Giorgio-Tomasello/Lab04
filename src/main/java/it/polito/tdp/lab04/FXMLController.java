@@ -30,6 +30,9 @@ public class FXMLController {
 
     @FXML // fx:id="brnReset"
     private Button brnReset; // Value injected by FXMLLoader
+    
+    @FXML // fx:id="btnCerca"
+    private Button btnCerca; // Value injected by FXMLLoader
 
     @FXML // fx:id="btnCercaCorsi"
     private Button btnCercaCorsi; // Value injected by FXMLLoader
@@ -57,6 +60,39 @@ public class FXMLController {
 
     @FXML // fx:id="textOutput"
     private TextArea textOutput; // Value injected by FXMLLoader
+    
+    
+    @FXML
+    void doCerca(ActionEvent event) {
+    	
+    	textOutput.clear();
+    	
+    	if(model.getTuttiGliStudenti().containsKey(Integer.parseInt(textMatricola.getText()))==false) {
+    		
+    		textOutput.setText("Errore! Lo studente non è presente nel database");
+    	}
+    	
+    	else {
+    		if(cmbBoxCorsi.getValue()==null||cmbBoxCorsi.getValue()=="") {
+        		textOutput.setText("Errore! Non hai selezionato alcun corso");
+        	}else {
+        		
+        		for(Corso c:model.getCorsiPerStudente(textMatricola.getText())) {
+            		
+            		if(c.getNome().compareTo(cmbBoxCorsi.getValue())==0) {
+            			
+            			textOutput.setText("Lo stuente è iscritto al corso selezionato");
+                	}
+            		}
+        	}
+    	}
+    	
+    	
+    		
+    	}
+    	
+
+    
 
     @FXML
     void doCercaCorsi(ActionEvent event) {
@@ -68,13 +104,13 @@ public class FXMLController {
    	if(model.getTuttiGliStudenti().containsKey(Integer.parseInt(textMatricola.getText()))==false) {
     		
     		textOutput.setText("Errore! Lo studente non è presente nel database");
-    	}
+    	}else {
     	
     	for(Corso c:model.getCorsiPerStudente(textMatricola.getText())) {
     		
     		textOutput.appendText(c.toString());
     		
-    	}
+    	}}
 
     }
 
@@ -129,6 +165,7 @@ public class FXMLController {
     void initialize() {
         assert brnReset != null : "fx:id=\"brnReset\" was not injected: check your FXML file 'Scene.fxml'.";
         assert btnCercaCorsi != null : "fx:id=\"btnCercaCorsi\" was not injected: check your FXML file 'Scene.fxml'.";
+        assert btnCerca != null : "fx:id=\"btnCerca\" was not injected: check your FXML file 'Scene.fxml'.";
         assert btnCercaIscritti != null : "fx:id=\"btnCercaIscritti\" was not injected: check your FXML file 'Scene.fxml'.";
         assert btnIscrivi != null : "fx:id=\"btnIscrivi\" was not injected: check your FXML file 'Scene.fxml'.";
         assert checkBox != null : "fx:id=\"checkBox\" was not injected: check your FXML file 'Scene.fxml'.";
