@@ -70,9 +70,14 @@
                         <Insets left="20.0" />
                      </HBox.margin>
                   </Button>
+                  <Button fx:id="btnCerca" mnemonicParsing="false" onAction="#doCerca" text="Cerca">
+                     <HBox.margin>
+                        <Insets left="150.0" />
+                     </HBox.margin>
+                  </Button>
                   <Button fx:id="btnIscrivi" mnemonicParsing="false" onAction="#doIscrivi" text="Iscrivi">
                      <HBox.margin>
-                        <Insets left="400.0" />
+                        <Insets left="200.0" />
                      </HBox.margin>
                   </Button>
                </children>
